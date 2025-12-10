@@ -14,4 +14,7 @@ console.log(typeof undefined); // It is a undefined type
 console.log(typeof null); // In JS null is defined as an object type
 
 
+
+
+
  
