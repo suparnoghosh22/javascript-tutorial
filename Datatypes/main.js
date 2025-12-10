@@ -45,4 +45,27 @@ const myFunc = function() {
 
 myFunc()
 
- 
+// Stack (Stores Primitive types and references) , Heap (Stores Objects)
+
+let myName = "Suparno"
+let myAnotherName = myName // Here only the value of myName is copied not the memory reference, so any change in either myName or myAnotherName will not affect either ones
+myName = "Tubai"
+myAnotherName = "john"
+
+console.log(myAnotherName)
+console.log(myName)
+
+// Here since it's copy by reference so any change in original value will change the entire value
+let userOne = {
+    email: "user@google.com",
+    upi: "user@oksbi"
+}
+
+let userTwo = userOne
+
+userTwo.email = "sup@google.com"
+
+console.log(userOne.email)
+console.log(userTwo.email)
+
+
