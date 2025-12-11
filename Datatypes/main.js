@@ -55,7 +55,7 @@ myAnotherName = "john"
 console.log(myAnotherName)
 console.log(myName)
 
-// Here since it's copy by reference so any change in original value will change the entire value
+// Here since it's copy by reference so any change in original value will change the entire value  
 let userOne = {
     email: "user@google.com",
     upi: "user@oksbi"
