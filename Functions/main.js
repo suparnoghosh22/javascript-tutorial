@@ -52,3 +52,44 @@ const handleObject = (user) => {
     console.log(`Username is ${user.username} and age is ${user?.age}`); // Here ? is used if age property is not available, so here age will become undefined
 }
 handleObject(user)
+
+
+// Arrow Keyword and this
+// this refers to the current context
+
+const users = {
+    username: "Suparno",
+    price: 999,
+    welcome: function(){
+        console.log(`Hello ${this.username}`)
+        console.log(this) // Here this refers to users object, i.e. current object
+        
+    }
+}
+
+users.welcome()
+users.username = "sam"
+users.welcome()
+console.log(this) // Here this refers to the node environment's context, it will return an empty object
+// But in browser context this refers to Window Object
+
+function one() {
+    const username = "John"
+    console.log(this) // Inside a function this refers to the global object
+    // console.log(this.username) --> It will return undefined, we cannot access values in a function using this
+}
+one()
+
+const two = () => {
+    console.log(this) // Here this refers to the Node Env
+}
+two()
+
+// Implicit return
+// If we use {} we have to specify the return keyword, but if we want to return in one line either we dont use {} or we use () instead 
+const three = (num1,num2) => num1 + num2
+const myObj = () => ({name: "Suparno"})
+
+console.log(three(3,4))
+console.log(myObj())
+
