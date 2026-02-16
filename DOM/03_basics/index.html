@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="language" id="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(languageName) {
+        const parent = document.querySelector('.language');
+        const childListElement = document.createElement('li');
+        const text = document.createTextNode(languageName);
+        childListElement.appendChild(text);
+        parent.appendChild(childListElement);
+    }
+    addLanguage('Python');
+    addLanguage('Ruby');
+
+    // Edit 
+    const secondList = document.querySelector("li:nth-child(2)");
+    const textNode = document.createTextNode("Mojo");
+    const newLi = document.createElement('li');
+    newLi.appendChild(textNode);
+    secondList.replaceWith(newLi);
+
+    const firstChild = document.querySelector('li:first-child');
+    firstChild.outerHTML = '<li>Typescript</li>';
+    
+    // Remove
+    const lastChild = document.querySelector("li:last-child");
+    lastChild.remove();
+</script>
+</html>

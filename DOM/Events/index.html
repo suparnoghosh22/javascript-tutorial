@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Events</title>
+  </head>
+  <body style="background-color: #414141; color: aliceblue">
+    <ul id="images">
+      <li>
+        <img
+          width="200px"
+          id="flower"
+          src="https://images.pexels.com/photos/31225245/pexels-photo-31225245.jpeg"
+          alt="flower"
+        />
+      </li>
+      <li>
+        <img
+          width="200px"
+          id="cat"
+          src="https://images.pexels.com/photos/31985998/pexels-photo-31985998.jpeg"
+          alt="cat"
+          onclick="alert('cat')"
+        />
+      </li>
+      <li>
+        <img
+          width="200px"
+          id="mountain"
+          src="https://images.pexels.com/photos/3131634/pexels-photo-3131634.jpeg"
+          alt="mountain"
+        />
+      </li>
+      <li><a id="google" href="http://www.google.com">Google</a></li>
+    </ul>
+  </body>
+  <script>
+    const flower = document.getElementById("flower");
+    const mountain = document.querySelector("#mountain");
+
+    flower.onclick = () => {
+      alert("owl");
+    };
+
+    mountain.addEventListener(
+      "click",
+      (event) => {
+        alert("mountain");
+      },
+      false,
+    );
+
+    // Event properties to study > type, timestamp, defaultPrevented, target, toElement, srcElement, currentTarget, clientX, clientY
+    // screenX, screenY, altKey, ctrlKey, shiftKey, keyCode
+
+    // Event Propagation
+    // addEventListener(event name, function, event propagation > default value is 'false')
+    // There are two types of Event Propagation > Event Bubbling, Event Capturing
+
+    document.getElementById("images").addEventListener(
+      "click",
+      (e) => {
+        console.log("clicked inside the ul");
+      },
+      false,
+    );
+    document.getElementById("cat").addEventListener(
+      "click",
+      (e) => {
+        console.log("clicked inside the cat");
+      },
+      true,
+    );
+    document.getElementById("google").addEventListener(
+      "click",
+      (e) => {
+        e.preventDefault();
+        console.log("Inside Google");
+      },
+      false,
+    );
+
+    document.querySelector("#images").addEventListener("click", (e) => {
+      console.log(e.target.parentNode);
+      console.log(e.target.tagName);
+      console.log(e.target.id);
+
+      if (e.target.tagName === "IMG") {
+        let removeElement = e.target.parentNode; // here target is the img tag, then parent is li, so li is selected
+        // removeElement.parentNode.removeChild(removeElement); -> here we first select the parent of li i.e. ul
+        // then we remove child of ul that is the selected li element
+        // If we invoke removeChild() on li then it will only remove the img element inside the li not the entire node
+        removeElement.remove();
+      }
+    });
+  </script>
+</html>
