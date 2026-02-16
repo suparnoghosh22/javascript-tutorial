@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Images</title>
+</head>
+<body>
+    <div id="container" class="container">
+        <ul id="images" class="images">
+            <li>
+                <img src="https://content.pexels.dev/images/canva/ai-generated-ad/off-theme/land_rover_on_lavender_road-full.jpg" 
+                     alt="car" id="car">
+            </li>
+            <li>
+                <img src="https://images.pexels.com/photos/31985998/pexels-photo-31985998/free-photo-of-charming-tortoiseshell-cat-relaxing-on-wall-in-thailand.jpeg?auto=compress&cs=tinysrgb&w=600"
+                     alt="cat" id="cat">
+            </li>
+            <li><a href="http://www.google.com">Google</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+    const unorderedList = document.querySelector('#images');
+    unorderedList.addEventListener('click', (event) => {
+        console.log(event.target);
+        console.log(event.target.tagName);
+        console.log(event.target.id);
+
+        let img = event.target.tagName;
+        if(img === 'IMG') {
+            let removeElement = event.target.parentNode;
+            removeElement.remove();
+        }
+    });
+</script>
+</html>
