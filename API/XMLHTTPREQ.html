@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+In JS XMLHttpRequest API is used to make HTTP request to web servers, which helps the website
+to load a part of the data from server instead of reloading the whole page or redirecting to a new page
+This practice is also known as AJAX programming.
+-->
+
+<!--
+States in XHR
+Value	State	               Description
+0	UNSENT	                Client has been created. open() not called yet.
+1	OPENED	                open() has been called.
+2	HEADERS_RECEIVED        send() has been called, and headers and status are available.
+3	LOADING	Downloading;    responseText holds partial data.
+4	DONE	                The operation is complete.
+-->
+
+<!--
+UNSENT
+The XMLHttpRequest client has been created, but the open() method hasn't been called yet.
+
+OPENED
+open() method has been invoked. During this state, the request headers can be set using the setRequestHeader() method and the send() method can be called which will initiate the fetch.
+
+HEADERS_RECEIVED
+send() has been called, all redirects (if any) have been followed and the response headers have been received.
+
+LOADING
+Response's body is being received. If responseType is "text" or empty string, responseText will have the partial text response as it loads.
+
+DONE
+The fetch operation is complete. This could mean that either the data transfer has been completed successfully or failed.
+-->
+</body>
+<script>
+    const requestUrl = "https://randomuser.me/api/";
+    let xhr = new XMLHttpRequest();
+    // Sends request to a server open(Type of req, url)
+    xhr.open('GET', requestUrl);
+    // continuously checks the state of the request
+    xhr.onreadystatechange = function() {
+        // console.log(xhr.readyState);
+        if(xhr.readyState === 4 && xhr.status === 200) {
+            // This responseText variable holds the data coming from server in String format
+            console.log(typeof this.responseText);
+            console.log(this.responseText);
+            // We need to convert the String into JSON data, we can use parse method of JSON
+            const data = JSON.parse(this.responseText);
+            console.log(data.results[0].email);
+        }
+    }
+    xhr.send();
+
+</script>
+</html>

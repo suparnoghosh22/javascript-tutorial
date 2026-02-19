@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My Async App</h1>
+    <h3></h3>
+    <button id="stop">Stop Name Change</button>
+    <button id="stop1">Stop Interval</button>
+    <button id="resume">Resume Counter</button>
+</body>
+<script>
+    let counter = 0;
+    const changeName = setTimeout(() => {
+        document.querySelector('h1').innerHTML = 'name changed';
+    },5000);
+    let incrementCounter;
+
+    document.getElementById('stop').addEventListener('click',(e) => {
+       clearTimeout(changeName);
+    });
+    // document.getElementById('stop1').addEventListener('click',(e) => {
+    //     clearInterval(incrementCounter);
+    // });
+
+    document.getElementById("resume").addEventListener('click',(e) => {
+        incrementCounter = setInterval(() => {
+            document.querySelector('h3').innerText = String(counter);
+            counter++;
+        },1000);
+    });
+
+    document.querySelector('#stop1').addEventListener('click',(e) => {
+        clearInterval(incrementCounter);
+    });
+
+</script>
+</html>

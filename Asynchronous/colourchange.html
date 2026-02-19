@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Number Guessing Game</title>
+</head>
+<body style="background-color: #212121; color: #fff">
+<nav>
+    <a href="/" aria-current="page">Home</a>
+    <a target="_blank" href="https://www.youtube.com/@chaiaurcode">YouTube channel</a>
+</nav>
+
+<h1>Start should change the Background color every second</h1>
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+<script>
+    const startButton = document.querySelector('#start');
+    const stopButton = document.querySelector("#stop");
+    let interval;
+    const generateRandomColors = () => {
+        let hexCode = '123456789ABCDEF';
+        let colorCode = '#';
+        for (let i=0;i<6;i++){
+            let randomNumber = Math.floor(Math.random()*16);
+            colorCode += hexCode[randomNumber];
+        }
+        return colorCode;
+    }
+
+    startButton.addEventListener('click', () => {
+       if(!interval) {
+           interval = setInterval(() => {
+               document.body.style.backgroundColor = generateRandomColors();
+           },1000);
+       }
+    });
+
+    stopButton.addEventListener('click',() => {
+       clearInterval(interval);
+       interval = null;
+    });
+
+
+</script>
+</body>
+</html>

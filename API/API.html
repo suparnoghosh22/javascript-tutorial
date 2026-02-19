@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>API Request Demo</title>
+</head>
+<body>
+    <h1>API Request Demo</h1>
+</body>
+<script>
+    const display = document.createElement('div');
+    document.body.appendChild(display);
+
+    const fetchButton = document.createElement('button');
+    const text = document.createTextNode('Request Data');
+    fetchButton.appendChild(text);
+    fetchButton.setAttribute('class','button');
+    document.body.appendChild(fetchButton);
+
+    const getButton = document.querySelector(".button");
+    const getDisplay = document.querySelector("div");
+    let data;
+
+    getButton.addEventListener('click', () => {
+        const xhr = new XMLHttpRequest();
+        const reqUrl = 'https://randomuser.me/api/';
+        xhr.open('GET',reqUrl);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                data = JSON.parse(this.responseText);
+            }
+        }
+        xhr.send();
+        if(data !== undefined) getDisplay.innerHTML = `<h3>Email: ${data?.results[0].email}</h3>`
+    });
+</script>
+</html>
